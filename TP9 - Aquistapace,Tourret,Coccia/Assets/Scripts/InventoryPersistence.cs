@@ -1,49 +1,52 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-public class InventoryPersistence : MonoBehaviour
+public abstract class InventoryPersistence : ScriptableObject
 {
-    [SerializeField] int data = 0;
-    [SerializeField] ScriptableObject obj;
-    [SerializeField] string fileName = "HOLAAA"; //Nombre estandar de el archivo a crear 
-    [SerializeField] string extension = ".dat"; 
-    string path ;  //Direccion donde se va a guardar el archivo.
-
-    // Start is called before the first frame update
-    void Start()
+    string extension = ".dat"; 
+    void CreateFile(string name )
     {
-        path = Application.dataPath + "/";
-        //CreateFile(fileName + extension);
-        SaveFile(fileName + extension);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    //Crea un archivo binario usando el path + el nombre del archivo a crear.
-    void CreateFile(string name)
-    {
-        if (!File.Exists(path + name))
+        if (!File.Exists(GetPath()))
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path + name, FileMode.Create);
+            FileStream stream = new FileStream(GetPath(), FileMode.Create);
             formatter.Serialize(stream, "");
             stream.Close();
         }
 
     }
-   public void SaveFile(string name)
+   public virtual void SaveFile(string name)
    {
-       if (!File.Exists(path + name))
-       {
-           CreateFile(name);
-       }
-       BinaryFormatter formatter = new BinaryFormatter();
-       FileStream stream = new FileStream(path + name, FileMode.Open);
-       formatter.Serialize(stream, data);
-       stream.Close();
+        Debug.Log(GetPath());
+        if (!File.Exists(GetPath()))
+        {
+            CreateFile(name + extension);
+        }
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(GetPath(), FileMode.Open);
+        var json = JsonUtility.ToJson(this);
+        formatter.Serialize(stream, json);
+        stream.Close();
+        
    }
+   public virtual void LoadFile(string name)
+   {
+        Debug.Log(GetPath());
+        if (File.Exists(GetPath()))
+        {    
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(GetPath(), FileMode.Open);
 
+            JsonUtility.FromJsonOverwrite((string)formatter.Deserialize(stream), this);
+            stream.Close();
+        }
+        else
+        {
+            CreateFile(name);
+        }
+   }
+    private string GetPath()
+    {
+        return Application.dataPath +"/"+ name + extension;
+    }
 }
