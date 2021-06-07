@@ -4,6 +4,7 @@
 public class Weapon : Item
 {
     public weaponType _type;
+    public int _level;
     public int _damage = 0;
     public string _description;
 

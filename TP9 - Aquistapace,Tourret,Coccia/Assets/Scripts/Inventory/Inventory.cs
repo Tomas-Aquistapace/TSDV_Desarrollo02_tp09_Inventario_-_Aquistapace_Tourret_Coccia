@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public int _totalSlots;
+    public int _inventoryLimit;
     public List<Item> _inventory;
     public Armor[] _currentArmor;
     public Weapon _currentWeapon;
@@ -19,7 +18,7 @@ public class Inventory : MonoBehaviour
 
     bool AddToInventory(Item newItem)
     {
-        if (newItem != null && _inventory.Count < _totalSlots)
+        if (newItem != null && _inventory.Count < _inventoryLimit)
         {
             _inventory.Add(newItem);
             return true;

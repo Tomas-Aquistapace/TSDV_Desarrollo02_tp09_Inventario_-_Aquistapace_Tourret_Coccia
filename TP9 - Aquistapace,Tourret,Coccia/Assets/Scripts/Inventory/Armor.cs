@@ -4,6 +4,7 @@
 public class Armor : Item
 {
     public armorSlot _slot;
+    public int _level;
     public int _defense = 0;
     public string _description;
 
