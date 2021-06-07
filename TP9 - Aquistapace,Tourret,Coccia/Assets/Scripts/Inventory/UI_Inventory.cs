@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class UI_Inventory : MonoBehaviour
 {
-    public UI_InventorySlot[] _slots;
+    [SerializeField]
+    UI_InventorySlot[] _slots;
+    public Transform grid;
 
+    private void OnEnable()
+    {
+        Inventory.pickUpItem += UpdateUI;
+    }
+    private void OnDisable()
+    {
+        Inventory.pickUpItem -= UpdateUI;
+    }
     private void Start()
     {
-        _slots = gameObject.GetComponentsInChildren<UI_InventorySlot>();
+        _slots = grid.GetComponentsInChildren<UI_InventorySlot>();
     }
     
-    public void UpdateUI(Inventory inventory)
+    public void UpdateUI(List<Item> inventory)
     {
         for (int i = 0; i < _slots.Length; i++)
         {
-            if (i < inventory._inventory.Count)
+            if (i < inventory.Count)
             {
-                _slots[i].AddItem(inventory._inventory[i]);
+                _slots[i].AddItem(inventory[i]);
             }
             else
             {

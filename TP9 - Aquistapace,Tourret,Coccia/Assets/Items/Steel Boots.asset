@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e74579deba85948b4900592f1d2990, type: 3}
+  m_Name: Steel Boots
+  m_EditorClassIdentifier: 
+  _itemName: Steel Boots
+  _id: 4
+  _2Dmodel: {fileID: 21300000, guid: e420c5bc93cb2604695a893500c897e3, type: 3}
+  _3Dmodel: {fileID: 0}
+  _weight: 1
+  _durability: 100
+  _slot: 4
+  _level: 2
+  _defense: 6
+  _description: Leather boots padded with sheets of Steel. Steel is an uncommon alloy
+    for most and proves to be far superior to Iron.

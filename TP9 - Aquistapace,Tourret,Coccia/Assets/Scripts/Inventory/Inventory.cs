@@ -1,12 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public int _inventoryLimit;
-    public List<Item> _inventory;
-    public Armor[] _currentArmor;
-    public Weapon _currentWeapon;
+    public static Action<List<Item>> pickUpItem;
+    int _inventoryLimit=25;
+    [SerializeField]
+    List<Item> _inventory;
+    Armor[] _currentArmor;
+    Weapon _currentWeapon;
+
+    int randomItem;
+    public List<Item> _listOfAllItems;
+
 
     private void Start()
     {
@@ -14,6 +21,14 @@ public class Inventory : MonoBehaviour
         _currentArmor = new Armor[armorSlots];
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            randomItem = UnityEngine.Random.Range(0,_listOfAllItems.Count);
+            AddToInventory(_listOfAllItems[randomItem]);
+        }
+    }
     // ----------
 
     bool AddToInventory(Item newItem)
@@ -21,6 +36,7 @@ public class Inventory : MonoBehaviour
         if (newItem != null && _inventory.Count < _inventoryLimit)
         {
             _inventory.Add(newItem);
+            pickUpItem?.Invoke(_inventory);
             return true;
         }
         else
@@ -56,14 +72,31 @@ public class Inventory : MonoBehaviour
     public void RemoveArmor(Armor removedArmor)
     {
         int armorSlot = (int)removedArmor._slot;
-
-
-        if(AddToInventory(removedArmor))
+        if (AddToInventory(removedArmor))
+        {
             _currentArmor[armorSlot] = null;
-
-
+        }
     }
 
     // ----------
+    public void EquipWeapon(Weapon newWeapon)
+    {
+        Weapon auxWeapon;
+        RemoveFromInventory(newWeapon);
+        if (_currentWeapon != null)
+        {
+            auxWeapon = _currentWeapon;
 
+            AddToInventory(auxWeapon);
+        }
+        _currentWeapon = newWeapon;
+    }
+
+    public void RemoveWeapon(Weapon removedWeapon)
+    {
+        if (AddToInventory(removedWeapon))
+        {
+            _currentWeapon = null;
+        }
+    }
 }
