@@ -12,6 +12,14 @@ public class Consumable : Item
     {
         Debug.Log("Consumable " + _itemName);
     }
+    public override void LoadFile(string name)
+    {
+        base.LoadFile(name);
+    }
+    public override void SaveFile(string name)
+    {
+        base.SaveFile(name);
+    }
 }
 
 public enum consumableType { Potion, Food }

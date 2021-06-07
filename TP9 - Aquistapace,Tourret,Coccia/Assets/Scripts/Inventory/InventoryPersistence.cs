@@ -46,6 +46,6 @@ public abstract class InventoryPersistence : ScriptableObject
    }
     private string GetPath()
     {
-        return Application.dataPath +"/"+ name + extension;
+        return Application.dataPath + "/SaveInventory/" + name + extension;
     }
 }

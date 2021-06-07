@@ -12,6 +12,14 @@ public class Armor : Item
     {
         Debug.Log("Armor " + _itemName);
     }
+    public override void LoadFile(string name)
+    {
+        base.LoadFile(name);
+    }
+    public override void SaveFile(string name)
+    {
+        base.SaveFile(name);
+    }
 }
 
 public enum armorSlot { Helmet, Chest, Gloves, Greaves, Boots }
