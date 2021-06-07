@@ -13,7 +13,6 @@ public abstract class InventoryPersistence : ScriptableObject
             formatter.Serialize(stream, "");
             stream.Close();
         }
-
     }
    public virtual void SaveFile(string name)
    {
