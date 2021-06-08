@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class UI_InventorySlot : MonoBehaviour
 {
     public Image _icon = null;
-    public static Action removeButton;
+    public static Action<Item> removeButton;
+    public static Action<int> UnequipButton;
     public Item _currentItem;
     Button _removeButton;
 
@@ -33,9 +34,12 @@ public class UI_InventorySlot : MonoBehaviour
 
     public void OnRemoveButton()
     {
-        removeButton?.Invoke();
+        removeButton?.Invoke(_currentItem);
     }
-
+    public void OnUnequipButton(int slot)
+    {
+        UnequipButton?.Invoke(slot);
+    }
     public void UseItem()
     {
         if(_currentItem != null)

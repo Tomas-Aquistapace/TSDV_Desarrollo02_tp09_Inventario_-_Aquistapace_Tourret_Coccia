@@ -18,7 +18,8 @@ MonoBehaviour:
   _3Dmodel: {fileID: 0}
   _weight: 0
   _durability: 0
+  _description: 
+  _slot: 5
   _type: 0
   _level: 0
   _damage: 0
-  _description: 

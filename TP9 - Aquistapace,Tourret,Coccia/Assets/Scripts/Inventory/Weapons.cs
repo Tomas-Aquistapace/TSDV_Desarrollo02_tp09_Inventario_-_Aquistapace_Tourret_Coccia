@@ -1,18 +1,12 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Weapon", menuName = "Inventory/Weapon")]
-public class Weapon : Item
+public class Weapon : Equipment
 {
     public weaponType _type;
     public int _level;
     public int _damage = 0;
     
-    public override void Use()
-    {
-        Debug.Log("Weapon " + _itemName);
-        
-    }
-
     public override string ContentData()
     {
         return (_type + "                   " + "Level: " + _level.ToString() + "\n"

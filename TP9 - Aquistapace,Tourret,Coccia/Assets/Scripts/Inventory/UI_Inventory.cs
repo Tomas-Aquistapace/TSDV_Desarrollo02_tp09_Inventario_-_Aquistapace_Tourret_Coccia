@@ -5,6 +5,7 @@ public class UI_Inventory : MonoBehaviour
 {
     [SerializeField]
     UI_InventorySlot[] _inventorySlots;
+    [SerializeField]
     UI_InventorySlot[] _equipmentSlots;
     public Transform grid;
     public Transform layout;
@@ -12,12 +13,12 @@ public class UI_Inventory : MonoBehaviour
     private void OnEnable()
     {
         Inventory.UpdateInvUI += UpdateInvUI;
-        Inventory.UpdateArmorUI += UpdateArmorUI;
+        Inventory.UpdateEquipmentUI += UpdateEquipmentUI;
     }
     private void OnDisable()
     {
         Inventory.UpdateInvUI -= UpdateInvUI;
-        Inventory.UpdateArmorUI -= UpdateArmorUI;
+        Inventory.UpdateEquipmentUI -= UpdateEquipmentUI;
     }
     private void Start()
     {
@@ -39,13 +40,17 @@ public class UI_Inventory : MonoBehaviour
             }
         }
     }
-    public void UpdateArmorUI(Armor[] armor)
+    public void UpdateEquipmentUI(Equipment[] equipment)
     {
-        for (int i = 0; i < armor.Length; i++)
+        for (int i = 0; i < equipment.Length; i++)
         {
-            if (armor[i] != null)
+            if (equipment[i] != null)
             {
-                _equipmentSlots[(int)armor[i]._slot].AddItem(armor[i]);
+                _equipmentSlots[(int)equipment[i]._slot].AddItem(equipment[i]);
+            }
+            else
+            {
+                _equipmentSlots[i].ClearSlot();
             }
         }
         

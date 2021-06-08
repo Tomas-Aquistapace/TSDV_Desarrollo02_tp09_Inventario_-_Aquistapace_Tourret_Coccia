@@ -5,21 +5,20 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public static Action<List<Item>> UpdateInvUI;
-    public static Action<Armor[]> UpdateArmorUI;
+    public static Action<Equipment[]> UpdateEquipmentUI;
     int _inventoryLimit=25;
     [SerializeField]
     List<Item> _inventory;
     [SerializeField]
-    Armor[] _currentArmor;
-    [SerializeField]
-    Weapon _currentWeapon;
+    Equipment[] _currentEquipment;
     int randomItem;
     public List<Item> _listOfAllItems;
 
     private void OnEnable()
     {
-        Armor.armorEquipped += EquipArmor;
-
+        Equipment.equipped += Equip;
+        UI_InventorySlot.removeButton += RemoveFromInventory;
+        UI_InventorySlot.UnequipButton += Unequip;
         for (int i = 0; i < _inventory.Count; i++)
         {
             //Debug.Log("load" + casco.name);
@@ -29,7 +28,9 @@ public class Inventory : MonoBehaviour
 
     private void OnDisable()
     {
-        Armor.armorEquipped -= EquipArmor;
+        Equipment.equipped -= Equip;
+        UI_InventorySlot.removeButton -= RemoveFromInventory;
+        UI_InventorySlot.UnequipButton -= Unequip;
 
         for (int i = 0; i < _inventory.Count; i++)
         {
@@ -40,8 +41,8 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        int armorSlots = System.Enum.GetNames(typeof(armorSlot)).Length;
-        _currentArmor = new Armor[armorSlots];
+        int equipmentSlots = System.Enum.GetNames(typeof(equipmentSlot)).Length;
+        _currentEquipment = new Equipment[equipmentSlots];
     }
 
     private void Update()
@@ -76,53 +77,31 @@ public class Inventory : MonoBehaviour
 
     // ----------
 
-    public void EquipArmor(Armor newArmor)
+    public void Equip(Equipment newEquipment)
     {
-        int armorSlot = (int)newArmor._slot;
-        Armor auxArmor;
+        int equipmentSlot = (int)newEquipment._slot;
+        Equipment auxEquipment;
 
-        RemoveFromInventory(newArmor);
+        RemoveFromInventory(newEquipment);
 
-        if (_currentArmor[armorSlot] != null)
+        if (_currentEquipment[equipmentSlot] != null)
         {
-            auxArmor = _currentArmor[armorSlot];
+            auxEquipment = _currentEquipment[equipmentSlot];
 
-            AddToInventory(auxArmor);
+            AddToInventory(auxEquipment);
         }
-        
-        _currentArmor[armorSlot] = newArmor;
-        UpdateArmorUI?.Invoke(_currentArmor);
+
+        _currentEquipment[equipmentSlot] = newEquipment;
         UpdateInvUI?.Invoke(_inventory);
+        UpdateEquipmentUI?.Invoke(_currentEquipment);
     }
 
-    public void RemoveArmor(Armor removedArmor)
-    {
-        int armorSlot = (int)removedArmor._slot;
-        if (AddToInventory(removedArmor))
+    public void Unequip(int slot)
+    {        
+        if (AddToInventory(_currentEquipment[slot]))
         {
-            _currentArmor[armorSlot] = null;
-        }
-    }
-
-    // ----------
-    public void EquipWeapon(Weapon newWeapon)
-    {
-        Weapon auxWeapon;
-        RemoveFromInventory(newWeapon);
-        if (_currentWeapon != null)
-        {
-            auxWeapon = _currentWeapon;
-
-            AddToInventory(auxWeapon);
-        }
-        _currentWeapon = newWeapon;
-    }
-
-    public void RemoveWeapon(Weapon removedWeapon)
-    {
-        if (AddToInventory(removedWeapon))
-        {
-            _currentWeapon = null;
+            _currentEquipment[slot] = null;
+            UpdateEquipmentUI?.Invoke(_currentEquipment);
         }
     }
 }
