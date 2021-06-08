@@ -157,7 +157,6 @@ GameObject:
   - component: {fileID: 4479590343384422496}
   - component: {fileID: 2337545611767152409}
   - component: {fileID: 4479590343384422430}
-  - component: {fileID: 142643557}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -208,7 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -292,18 +291,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
   _currentItem: {fileID: 0}
---- !u!114 &142643557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4479590343384422498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da195158ce2f23249b7ea9c7dd74220d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6104866015456935631
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +302,7 @@ GameObject:
   - component: {fileID: 7443103085235433473}
   - component: {fileID: 865533386872317198}
   - component: {fileID: 3422925118997742539}
+  - component: {fileID: 873989103720012312}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -363,7 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -379,3 +367,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &873989103720012312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6104866015456935631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da195158ce2f23249b7ea9c7dd74220d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

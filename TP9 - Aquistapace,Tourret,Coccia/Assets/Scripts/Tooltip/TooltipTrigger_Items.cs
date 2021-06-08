@@ -8,7 +8,7 @@ public class TooltipTrigger_Items : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Item _currentItem = transform.GetComponent<UI_InventorySlot>()._currentItem;
+        Item _currentItem = transform.GetComponentInParent<UI_InventorySlot>()._currentItem;
         
         if(_currentItem != null)
         {
