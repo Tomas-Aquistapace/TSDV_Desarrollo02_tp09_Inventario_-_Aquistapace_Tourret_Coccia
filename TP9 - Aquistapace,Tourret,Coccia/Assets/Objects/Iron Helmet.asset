@@ -18,8 +18,8 @@ MonoBehaviour:
   _3Dmodel: {fileID: 0}
   _weight: 1
   _durability: 100
+  _description: Sheet of iron hammered into the shape of a human head. Padded within
+    so as to protect from impacts.
   _slot: 0
   _level: 1
   _defense: 10
-  _description: Sheet of iron hammered into the shape of a human head. Padded within
-    so as to protect from impacts.

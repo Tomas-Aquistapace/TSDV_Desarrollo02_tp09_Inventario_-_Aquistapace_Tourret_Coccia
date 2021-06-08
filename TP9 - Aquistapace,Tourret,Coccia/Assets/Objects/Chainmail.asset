@@ -18,8 +18,8 @@ MonoBehaviour:
   _3Dmodel: {fileID: 0}
   _weight: 5
   _durability: 100
+  _description: Painstackingly interlocked iron rings. Making just one of these is
+    a task of months.
   _slot: 1
   _level: 1
   _defense: 5
-  _description: Painstackingly interlocked iron rings. Making just one of these is
-    a task of months.

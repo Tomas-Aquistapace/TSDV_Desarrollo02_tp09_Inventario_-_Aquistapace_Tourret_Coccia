@@ -1,51 +1,67 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-public abstract class InventoryPersistence : ScriptableObject
+using System.Collections.Generic;
+
+public class InventoryPersistence : MonoBehaviour
 {
-    string extension = ".dat"; 
+   [SerializeField] Armor soyUnaArmadura;
+    string extension = ".dat";
+    private void OnEnable()
+    {
+        Inventory.SaveInventory += SaveFile;
+        Inventory.LoadInventory += LoadFile;
+    }
+    private void OnDisable()
+    {
+        Inventory.SaveInventory -= SaveFile;
+        Inventory.LoadInventory -= LoadFile;
+
+    }
     void CreateFile(string name )
     {
         if (!File.Exists(GetPath()))
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(GetPath(), FileMode.Create);
+            FileStream stream = new FileStream(name, FileMode.Create);
             formatter.Serialize(stream, "");
             stream.Close();
         }
     }
-   public virtual void SaveFile(string name)
+    
+   public void SaveFile(List<Item> name)
    {
-        Debug.Log(GetPath());
         if (!File.Exists(GetPath()))
         {
-            CreateFile(name + extension);
+            CreateFile(GetPath() + "Inventory" + extension);
         }
         BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(GetPath(), FileMode.Open);
-        var json = JsonUtility.ToJson(this);
+        FileStream stream = new FileStream(GetPath() + "Inventory" + extension, FileMode.Open);
+        var json = JsonUtility.ToJson(name[0]);
         formatter.Serialize(stream, json);
         stream.Close();
         
    }
-   public virtual void LoadFile(string name)
+   public  void LoadFile(List<Item> name)
    {
-        Debug.Log(GetPath());
-        if (File.Exists(GetPath()))
+        if (File.Exists(GetPath() + "Inventory"))
         {    
             BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(GetPath(), FileMode.Open);
+            FileStream stream = new FileStream(GetPath() + "Inventory" + extension, FileMode.Open);
+            JsonUtility.FromJsonOverwrite((string)formatter.Deserialize(stream), name[0]);
+            string algo = "";
+            JsonUtility.FromJsonOverwrite((string)formatter.Deserialize(stream), algo);
+            Debug.Log(algo);
 
-            JsonUtility.FromJsonOverwrite((string)formatter.Deserialize(stream), this);
             stream.Close();
         }
         else
         {
-            CreateFile(name);
+            //CreateFile(name);
         }
    }
     private string GetPath()
     {
-        return Application.dataPath + "/SaveInventory/" + name + extension;
+        return Application.dataPath +"/SaveInventory/";
     }
 }

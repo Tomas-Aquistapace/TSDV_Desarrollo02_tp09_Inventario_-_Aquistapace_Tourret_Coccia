@@ -13,14 +13,6 @@ public class Weapon : Equipment
             + "Damage: " + _damage + "\n" + "Durability: " + _durability + "        "
             + "Weight" + _weight + "\n" +_description);
     }
-    public override void LoadFile(string name)
-    {
-        base.LoadFile(name);
-    }
-    public override void SaveFile(string name)
-    {
-        base.SaveFile(name);
-    }
 }
 
 public enum weaponType { Sword, Axe, Spear, Hammer, Bow, Crossbow }

@@ -18,8 +18,8 @@ MonoBehaviour:
   _3Dmodel: {fileID: 0}
   _weight: 1
   _durability: 100
+  _description: Leather boots padded with sheets of Steel. Steel is an uncommon alloy
+    for most and proves to be far superior to Iron.
   _slot: 4
   _level: 2
   _defense: 6
-  _description: Leather boots padded with sheets of Steel. Steel is an uncommon alloy
-    for most and proves to be far superior to Iron.

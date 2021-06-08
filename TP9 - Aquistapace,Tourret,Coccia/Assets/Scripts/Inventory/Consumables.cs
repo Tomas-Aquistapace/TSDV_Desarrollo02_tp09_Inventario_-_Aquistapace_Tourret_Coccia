@@ -11,15 +11,6 @@ public class Consumable : Item
     {
         Debug.Log("Consumable " + _itemName);
     }
-    public override void LoadFile(string name)
-    {
-        base.LoadFile(name);
-    }
-    public override void SaveFile(string name)
-    {
-        base.SaveFile(name);
-    }
-
     public override string ContentData()
     {
         return (_type + "\n" + "Health: " + _health.ToString() + "                "

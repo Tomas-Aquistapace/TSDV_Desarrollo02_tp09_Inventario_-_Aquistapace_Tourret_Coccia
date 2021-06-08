@@ -18,8 +18,8 @@ MonoBehaviour:
   _3Dmodel: {fileID: 0}
   _weight: 1
   _durability: 100
+  _description: Leather gloves padded with sheets of Iron. Protecting ones hand is
+    essencial in combat
   _slot: 2
   _level: 1
   _defense: 3
-  _description: Leather gloves padded with sheets of Iron. Protecting ones hand is
-    essencial in combat

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Item : InventoryPersistence
+public class Item : ScriptableObject
 {
     public string _itemName = "default";
     public int _id;
@@ -19,13 +19,5 @@ public class Item : InventoryPersistence
     public virtual string ContentData()
     {
         return ("Empty");
-    }
-    public override void LoadFile(string name)
-    {
-        base.LoadFile(name);
-    }
-    public override void SaveFile(string name)
-    {
-        base.SaveFile(name);
     }
 }

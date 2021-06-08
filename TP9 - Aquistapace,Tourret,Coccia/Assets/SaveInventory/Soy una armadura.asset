@@ -9,17 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Iron Sword
-  m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  _itemName: Iron Sword
+  m_Script: {fileID: 11500000, guid: c7e74579deba85948b4900592f1d2990, type: 3}
+  m_Name: Soy una armadura
+  m_EditorClassIdentifier: 
+  _itemName: default
   _id: 0
-  _2Dmodel: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
+  _2Dmodel: {fileID: 0}
   _3Dmodel: {fileID: 0}
   _weight: 0
   _durability: 0
-  _description: 
+  _description: csavsdasdfdshfewFGFEWRGW
   _slot: 0
-  _type: 0
   _level: 0
-  _damage: 0
+  _defense: 0
