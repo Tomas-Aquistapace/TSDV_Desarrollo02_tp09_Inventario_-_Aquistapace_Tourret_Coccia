@@ -167,6 +167,9 @@ TextureImporter:
   - first:
       213: -4820487270976498853
     second: Windows_54
+  - first:
+      213: -616713417919324477
+    second: Windows_55
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -363,13 +366,13 @@ TextureImporter:
       name: Windows_4
       rect:
         serializedVersion: 2
-        x: 3576
+        x: 3578
         y: 3432
-        width: 718
+        width: 716
         height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 42, y: 46, z: 43, w: 40}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -453,7 +456,7 @@ TextureImporter:
         height: 723
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 151, y: 149, z: 146, w: 151}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1426,6 +1429,27 @@ TextureImporter:
       bones: []
       spriteID: 735896b88a8fe4549ab3e8cb234d20b3
       internalID: -4820487270976498853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Windows_55
+      rect:
+        serializedVersion: 2
+        x: 1697
+        y: 2978
+        width: 125
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ce93b4f96ef077f0800000000000000
+      internalID: -616713417919324477
       vertices: []
       indices: 
       edges: []

@@ -1,38 +1,53 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class UI_Inventory : MonoBehaviour
 {
     [SerializeField]
-    UI_InventorySlot[] _slots;
+    UI_InventorySlot[] _inventorySlots;
+    UI_InventorySlot[] _equipmentSlots;
     public Transform grid;
+    public Transform layout;
 
     private void OnEnable()
     {
-        Inventory.pickUpItem += UpdateUI;
+        Inventory.UpdateInvUI += UpdateInvUI;
+        Inventory.UpdateArmorUI += UpdateArmorUI;
     }
     private void OnDisable()
     {
-        Inventory.pickUpItem -= UpdateUI;
+        Inventory.UpdateInvUI -= UpdateInvUI;
+        Inventory.UpdateArmorUI -= UpdateArmorUI;
     }
     private void Start()
     {
-        _slots = grid.GetComponentsInChildren<UI_InventorySlot>();
+        _inventorySlots = grid.GetComponentsInChildren<UI_InventorySlot>();
+        _equipmentSlots = layout.GetComponentsInChildren<UI_InventorySlot>();
     }
     
-    public void UpdateUI(List<Item> inventory)
+    public void UpdateInvUI(List<Item> inventory)
     {
-        for (int i = 0; i < _slots.Length; i++)
+        for (int i = 0; i < _inventorySlots.Length; i++)
         {
             if (i < inventory.Count)
             {
-                _slots[i].AddItem(inventory[i]);
+                _inventorySlots[i].AddItem(inventory[i]);
             }
             else
             {
-                _slots[i].ClearSlot();
+                _inventorySlots[i].ClearSlot();
             }
         }
+    }
+    public void UpdateArmorUI(Armor[] armor)
+    {
+        for (int i = 0; i < armor.Length; i++)
+        {
+            if (armor[i] != null)
+            {
+                _equipmentSlots[(int)armor[i]._slot].AddItem(armor[i]);
+            }
+        }
+        
     }
 }

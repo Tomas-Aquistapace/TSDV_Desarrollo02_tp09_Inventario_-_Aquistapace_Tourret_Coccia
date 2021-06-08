@@ -7,10 +7,10 @@ public class Weapon : Item
     public int _level;
     public int _damage = 0;
     public string _description;
-
     public override void Use()
     {
         Debug.Log("Weapon " + _itemName);
+        
     }
 }
 

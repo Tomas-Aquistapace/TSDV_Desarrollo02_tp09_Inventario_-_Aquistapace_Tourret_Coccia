@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public static Action<List<Item>> pickUpItem;
+    public static Action<List<Item>> UpdateInvUI;
+    public static Action<Armor[]> UpdateArmorUI;
     int _inventoryLimit=25;
     [SerializeField]
     List<Item> _inventory;
+    [SerializeField]
     Armor[] _currentArmor;
+    [SerializeField]
     Weapon _currentWeapon;
-
     int randomItem;
     public List<Item> _listOfAllItems;
 
-
+    private void OnEnable()
+    {
+        Armor.armorEquipped += EquipArmor;
+    }
+    private void OnDisable()
+    {
+        Armor.armorEquipped -= EquipArmor;
+    }
     private void Start()
     {
         int armorSlots = System.Enum.GetNames(typeof(armorSlot)).Length;
@@ -30,13 +39,12 @@ public class Inventory : MonoBehaviour
         }
     }
     // ----------
-
     bool AddToInventory(Item newItem)
     {
         if (newItem != null && _inventory.Count < _inventoryLimit)
         {
             _inventory.Add(newItem);
-            pickUpItem?.Invoke(_inventory);
+            UpdateInvUI?.Invoke(_inventory);
             return true;
         }
         else
@@ -67,6 +75,8 @@ public class Inventory : MonoBehaviour
         }
         
         _currentArmor[armorSlot] = newArmor;
+        UpdateArmorUI?.Invoke(_currentArmor);
+        UpdateInvUI?.Invoke(_inventory);
     }
 
     public void RemoveArmor(Armor removedArmor)

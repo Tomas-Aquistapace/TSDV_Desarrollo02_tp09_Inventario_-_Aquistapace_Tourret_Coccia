@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using System;
 
 [CreateAssetMenu(fileName = "New Armor", menuName = "Inventory/Armor")]
 public class Armor : Item
 {
+    public static Action<Armor> armorEquipped;
     public armorSlot _slot;
     public int _level;
     public int _defense = 0;
@@ -11,6 +13,7 @@ public class Armor : Item
     public override void Use()
     {
         Debug.Log("Armor " + _itemName);
+        armorEquipped?.Invoke(this);
     }
 }
 
