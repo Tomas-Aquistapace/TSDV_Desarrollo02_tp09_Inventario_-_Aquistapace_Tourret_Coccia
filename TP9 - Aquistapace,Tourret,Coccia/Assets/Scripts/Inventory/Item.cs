@@ -8,10 +8,17 @@ public class Item : InventoryPersistence
     public MeshRenderer _3Dmodel;
     public float _weight;
     public float _durability;
+    [Multiline()]
+    public string _description;
 
     public virtual void Use()
     {
-        Debug.Log("Used "+ _itemName);
+        Debug.Log("Used " + _itemName);
+    }
+
+    public virtual string ContentData()
+    {
+        return ("Empty");
     }
     public override void LoadFile(string name)
     {

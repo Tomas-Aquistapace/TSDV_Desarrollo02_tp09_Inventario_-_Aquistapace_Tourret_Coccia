@@ -8,7 +8,6 @@ public class Armor : Item
     public armorSlot _slot;
     public int _level;
     public int _defense = 0;
-    public string _description;
 
     public override void Use()
     {
@@ -22,6 +21,13 @@ public class Armor : Item
     public override void SaveFile(string name)
     {
         base.SaveFile(name);
+    }
+
+    public override string ContentData()
+    {
+        return (_slot + "                   " + "Level: " + _level.ToString() + "\n"
+            + "Defense: " + _defense + "\n" + "Durability: " +  _durability + "        "
+            + "Weight: " + _weight + "\n" + _description);
     }
 }
 
