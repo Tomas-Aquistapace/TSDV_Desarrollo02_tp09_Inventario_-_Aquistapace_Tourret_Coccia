@@ -13,7 +13,6 @@ public abstract class InventoryPersistence : ScriptableObject
             formatter.Serialize(stream, "");
             stream.Close();
         }
-
     }
    public virtual void SaveFile(string name)
    {
@@ -47,6 +46,6 @@ public abstract class InventoryPersistence : ScriptableObject
    }
     private string GetPath()
     {
-        return Application.dataPath +"/"+ name + extension;
+        return Application.dataPath + "/SaveInventory/" + name + extension;
     }
 }

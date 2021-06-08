@@ -38,6 +38,22 @@ public class Inventory : MonoBehaviour
             AddToInventory(_listOfAllItems[randomItem]);
         }
     }
+    private void OnEnable()
+    {
+        for (int i = 0; i < _inventory.Count; i++)
+        {
+            //Debug.Log("load" + casco.name);
+            //casco.LoadFile(casco.name);
+        }
+    }
+    private void OnDisable()
+    {
+        for (int i = 0; i < _inventory.Count; i++)
+        {
+            //Debug.Log("save " + casco.name);
+            _inventory[i].SaveFile(_inventory[i].name);
+        }
+    }
     // ----------
     bool AddToInventory(Item newItem)
     {
