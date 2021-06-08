@@ -23,7 +23,7 @@ public class Consumable : Item
     public override string ContentData()
     {
         return (_type + "\n" + "Health: " + _health.ToString() + "                "
-            + "Mana: " + _mana.ToString() + "\n" + "Durability: " + _durability + "                "
+            + "Mana: " + _mana.ToString() + "\n"
             + "Weight: " + _weight + "\n" + _description);
     }
 }

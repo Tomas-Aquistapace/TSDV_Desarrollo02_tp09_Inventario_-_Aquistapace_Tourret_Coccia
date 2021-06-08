@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 6309534653586651706}
   - component: {fileID: 6309534653586651707}
   - component: {fileID: 6309534653586651717}
-  - component: {fileID: 7612574275563615038}
   - component: {fileID: 617397632507678400}
   m_Layer: 5
   m_Name: Equipment Slot
@@ -103,9 +102,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6309534653586651705}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_LocalScale: {x: 0.11999999, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 1075934982069555802}
   - {fileID: 7612574274035577486}
@@ -169,18 +168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
   _currentItem: {fileID: 0}
---- !u!114 &7612574275563615038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6309534653586651705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da195158ce2f23249b7ea9c7dd74220d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &617397632507678400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +192,7 @@ GameObject:
   - component: {fileID: 7612574274035577475}
   - component: {fileID: 7612574274035577484}
   - component: {fileID: 7612574274035577485}
+  - component: {fileID: 7867933069904147273}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -311,14 +299,28 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6309534653586651705}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6309534653586651717}
+        m_MethodName: OnUnequipButton
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7867933069904147273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7612574274035577487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92839e2f2dcb3bc46ad1d7e4560b05c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _header: Unequip
+  _content: 

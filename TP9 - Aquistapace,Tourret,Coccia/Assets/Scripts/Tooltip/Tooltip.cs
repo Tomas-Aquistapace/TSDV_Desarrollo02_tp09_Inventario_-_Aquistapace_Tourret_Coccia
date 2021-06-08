@@ -11,13 +11,15 @@ public class Tooltip : MonoBehaviour
     public int _characterWrapLimit;
     public RectTransform _rectTransform;
 
-    float pivY;
+    float _recPivY;
+    float _recPivX;
 
     public void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
 
-        pivY = _rectTransform.pivot.y;
+        _recPivY = _rectTransform.pivot.y;
+        _recPivX = _rectTransform.pivot.x;
     }
 
     public void SetText(string content, string header = "")
@@ -42,13 +44,6 @@ public class Tooltip : MonoBehaviour
 
     private void Update()
     {
-        if (Application.isEditor)
-        {
-            int headerLenght = _headerField.text.Length;
-            int contentLenght = _contentField.text.Length;
-
-            _layoutElement.enabled = (headerLenght > _characterWrapLimit || contentLenght > _characterWrapLimit) ? true : false;
-        }
         Vector2 mousePos = Input.mousePosition;
 
         MovePivot(mousePos);
@@ -64,13 +59,13 @@ public class Tooltip : MonoBehaviour
         if (mousePos.y <= Screen.height / 2)
             pivotY = 0;
         else
-            pivotY = pivY;
+            pivotY = _recPivY;
 
 
         if (mousePos.x <= Screen.width / 2)
             pivotX = 0;
         else 
-            pivotX = _rectTransform.rect.width;
+            pivotX = _recPivX;
 
         _rectTransform.pivot = new Vector2(pivotX, pivotY);
     }

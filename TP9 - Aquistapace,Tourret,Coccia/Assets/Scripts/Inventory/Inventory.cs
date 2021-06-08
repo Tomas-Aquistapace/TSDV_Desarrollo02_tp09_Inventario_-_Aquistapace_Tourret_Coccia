@@ -19,11 +19,12 @@ public class Inventory : MonoBehaviour
         Equipment.equipped += Equip;
         UI_InventorySlot.removeButton += RemoveFromInventory;
         UI_InventorySlot.UnequipButton += Unequip;
-        for (int i = 0; i < _inventory.Count; i++)
-        {
-            //Debug.Log("load" + casco.name);
-            //casco.LoadFile(casco.name);
-        }
+
+        //for (int i = 0; i < _inventory.Count; i++)
+        //{
+        //    //Debug.Log("load" + casco.name);
+        //    //casco.LoadFile(casco.name);
+        //}
     }
 
     private void OnDisable()
@@ -73,6 +74,7 @@ public class Inventory : MonoBehaviour
     public void RemoveFromInventory(Item removedItem)
     {
         _inventory.Remove(removedItem);
+        UpdateInvUI?.Invoke(_inventory); 
     }
 
     // ----------
