@@ -18,8 +18,8 @@ MonoBehaviour:
   _3Dmodel: {fileID: 0}
   _weight: 3
   _durability: 100
+  _description: Leather pants padded with sheets of iron. Many important arteries
+    run through one's inner thigh, a single cut could be deadly.
   _slot: 3
   _level: 1
   _defense: 5
-  _description: Leather pants padded with sheets of iron. Many important arteries
-    run through one's inner thigh, a single cut could be deadly.
