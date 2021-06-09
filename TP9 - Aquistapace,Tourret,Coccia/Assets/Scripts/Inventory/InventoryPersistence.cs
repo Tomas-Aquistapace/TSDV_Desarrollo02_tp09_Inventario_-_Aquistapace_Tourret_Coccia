@@ -2,66 +2,58 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
-
-public class InventoryPersistence : MonoBehaviour
+using System.Net;
+[CreateAssetMenu(fileName = "SaveInventory", menuName = "Systems/SaveInventory")]
+public class InventoryPersistence : ScriptableObject
 {
-   [SerializeField] Armor soyUnaArmadura;
-    string extension = ".dat";
+    private void Awake()
+    {
+        if (!Directory.Exists(Application.persistentDataPath+ "/Saves/"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + "/Saves/");
+        }
+    }
     private void OnEnable()
     {
         Inventory.SaveInventory += SaveFile;
         Inventory.LoadInventory += LoadFile;
+        
     }
     private void OnDisable()
     {
         Inventory.SaveInventory -= SaveFile;
         Inventory.LoadInventory -= LoadFile;
+    }
 
-    }
-    void CreateFile(string name )
-    {
-        if (!File.Exists(GetPath()))
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(name, FileMode.Create);
-            formatter.Serialize(stream, "");
-            stream.Close();
-        }
-    }
-    
    public void SaveFile(List<Item> name)
    {
-        if (!File.Exists(GetPath()))
+        string json = JsonUtility.ToJson(name[0]);
+        Debug.Log(json);
+        if (!File.Exists(Application.persistentDataPath + "/Saves/" + "Inventory.txt"))
         {
-            CreateFile(GetPath() + "Inventory" + extension);
-        }
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(GetPath() + "Inventory" + extension, FileMode.Open);
-        var json = JsonUtility.ToJson(name[0]);
-        formatter.Serialize(stream, json);
-        stream.Close();
-        
-   }
-   public  void LoadFile(List<Item> name)
-   {
-        if (File.Exists(GetPath() + "Inventory"))
-        {    
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(GetPath() + "Inventory" + extension, FileMode.Open);
-            JsonUtility.FromJsonOverwrite((string)formatter.Deserialize(stream), name[0]);
-            string algo = "";
-            JsonUtility.FromJsonOverwrite((string)formatter.Deserialize(stream), algo);
-            Debug.Log(algo);
-
-            stream.Close();
+            File.Create(Application.persistentDataPath + "/Saves/" + "Inventory.txt");
         }
         else
         {
-            //CreateFile(name);
+            File.WriteAllText(Application.persistentDataPath + "/Saves/" + "Inventory.txt", json);
+        }
+    }
+   public  void LoadFile(List<Item> name)
+   {
+        Weapon AuxArmor;
+        Debug.Log("Loading");
+        if (File.Exists(Application.persistentDataPath + "/Saves/" + "Inventory.txt"))
+        {
+            string inventoryString = File.ReadAllText(Application.persistentDataPath + "/Saves/" + "Inventory.txt");
+            Debug.Log(inventoryString);
+            if (inventoryString != null)
+            {
+                AuxArmor = JsonUtility.FromJson<Weapon>(inventoryString);
+            }
+        }
+        else
+        {
+            Debug.Log("Save file not found");
         }
    }
-    private string GetPath()
-    {
-        return Application.dataPath +"/SaveInventory/";
-    }
 }

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
+
 [CreateAssetMenu(fileName = "New Armor", menuName = "Inventory/Armor")]
+[System.Serializable]
 public class Armor : Equipment
 {
     public int _level;

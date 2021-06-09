@@ -1,6 +1,6 @@
 ﻿
 using System;
-
+[System.Serializable]
 public class Equipment : Item
 {
     public equipmentSlot _slot;

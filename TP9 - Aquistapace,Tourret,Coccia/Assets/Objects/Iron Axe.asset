@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 194c35f1dd44f6d4081c567341ccf18a, type: 3}
   m_Name: Iron Axe
-  m_EditorClassIdentifier: Assembly-CSharp::Weapon
+  m_EditorClassIdentifier: 
   _itemName: Iron Axe
   _id: 0
   _2Dmodel: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
@@ -19,7 +19,7 @@ MonoBehaviour:
   _weight: 0
   _durability: 0
   _description: 
-  _slot: 5
-  _type: 1
+  _slot: 0
+  _type: 0
   _level: 0
   _damage: 0

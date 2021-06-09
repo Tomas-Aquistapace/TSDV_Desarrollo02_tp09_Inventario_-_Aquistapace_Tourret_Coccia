@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+[System.Serializable]
 public class Item : ScriptableObject
 {
     public string _itemName = "default";
